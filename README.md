@@ -1,3 +1,108 @@
-The algorithm continuously evaluates and scores open source software projects in supported package managers based on their impact and value to the OSS ecosystem.
+<h1 align="center"></h1>
 
-Simple support tea in reguide template can increase for an open source software project with an increasing number of dependents
+<div align="center">
+  <a href="http://nestjs.com/" target="_blank">
+    <img src="https://nestjs.com/img/logo_text.svg" width="150" alt="Nest Logo" />
+  </a>
+</div>
+
+<h3 align="center">NestJS SES (AWS emails)</h3>
+<a href="https://www.npmjs.com/package/@hishprorg/expedita-ut-iste"><img src="https://img.shields.io/npm/v/@hishprorg/expedita-ut-iste.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/@hishprorg/expedita-ut-iste"><img src="https://img.shields.io/npm/l/@hishprorg/expedita-ut-iste.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/@hishprorg/expedita-ut-iste"><img src="https://img.shields.io/npm/dm/@hishprorg/expedita-ut-iste.svg" alt="NPM Downloads" /></a>
+
+<div align="center">
+  <a href="https://nestjs.com" target="_blank">
+    <img src="https://img.shields.io/badge/built%20with-NestJs-red.svg" alt="Built with NestJS">
+  </a>
+</div>
+
+### Introduction
+
+This is a simple wrapper of [node-ses](https://www.npmjs.com/package/node-ses).
+It only comtemplates the send email functionality, but later it will be added more. Just ping me or open pull request and contribute :)
+
+### Installation
+
+```bash
+npm install @hishprorg/expedita-ut-iste
+```
+
+### Usage
+
+#### Importing module
+
+```typescript
+import { SesModule } from '@hishprorg/expedita-ut-iste';
+@Module({
+  imports: [
+    SesModule.forRoot({
+      secret: '<YOUR SECRET>',
+      apiKey: '<YOUR API_KEY>',
+      region: 'eu-west-1',
+    }),
+  ],
+  providers: [],
+  exports: [],
+})
+export class YourModule {}
+```
+
+#### Interfaces
+
+```typescript
+interface EmailOptions {
+  from: string;
+  to: string;
+  subject: string;
+  html?: string;
+  replyTo?: string;
+  cc: string;
+  bcc: string[];
+  altText?: string;
+}
+```
+
+#### Calling Send Method
+
+```typescript
+import { SesService } from '@hishprorg/expedita-ut-iste';
+import { SesEmailOptions } from '@hishprorg/expedita-ut-iste'
+
+@Injectable()
+export class YourService {
+  constructor(private sesService: SesService) {
+    const options: SesEmailOptions = {
+      from:'',
+      to:'',
+      subject:'',
+      html:'',
+      replyTo:'',
+      cc:'',
+      bcc:'',
+      altText:'',
+    };
+
+    await this.sesService.sendEmail(options);
+  }
+```
+
+<!-- ## Change Log
+
+See [Changelog](CHANGELOG.md) for more information. -->
+
+## Contributing
+
+Contributions welcome! See [Contributing](CONTRIBUTING.md).
+
+## Notes
+
+This project is not endorsed by or affiliated with [AWS](https://aws.amazon.com).
+
+## Author
+
+**Nuno Carvalhão [Site](https://nunocarvalhao.com)**
+
+## License
+
+Licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
